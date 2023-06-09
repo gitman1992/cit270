@@ -1,1 +1,4 @@
 login.json
+server.cert
+server.key
+*.pem
