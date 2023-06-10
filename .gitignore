@@ -2,3 +2,4 @@ login.json
 server.cert
 server.key
 *.pem
+package-lock.json
