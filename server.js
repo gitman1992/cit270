@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 https.createServer({
   key: fs.readFileSync("/etc/letsencrypt/archive/tj.cit270.com/privkey1.pem"), //This is a private key
   cert: fs.readFileSync("/etc/letsencrypt/archive/tj.cit270.com/cert1.pem"),
-  ca: fs.readFileSync("/letc/etsencrypt/archive/tj.cit270.com/chain1.pem"), //This is a self-signed ceriticated.
+  ca: fs.readFileSync("/etc/etsencrypt/archive/tj.cit270.com/chain1.pem"), //This is a self-signed ceriticated.
 }),
   // app.listen(port, ()=>{
 
