@@ -7,32 +7,25 @@ const https = require("https");
 
 const app = express();
 
-const port = 443;
+const port = 3000;
 
 const redisClient = Redis.createClient({ url: "redis://127.0.0.1:6379" });
 
 app.use(bodyParser.json());
 
-https
-  .createServer(
-    {
-      key: fs.readFileSync(
-        "/etc/letsencrypt/archive/tj.cit270.com/privkey1.pem"
-      ), //This is a private key
-      cert: fs.readFileSync("/etc/letsencrypt/archive/tj.cit270.com/cert1.pem"),
-      ca: fs.readFileSync("/etc/letsencrypt/archive/tj.cit270.com/chain1.pem"), //This is a self-signed ceriticated.
-    },
-    app
-  )
-  .listen(port, () => {
-    redisClient.connect();
-    console.log("Listening on port:" + port);
-  });
-// app.listen(port, ()=>{
-
-//
-//     console.log("Listening on port:"+ port);
-// });
+// https.createServer(
+//     {
+//       key: fs.readFileSync("/etc/letsencrypt/archive/tj.cit270.com/privkey1.pem"),
+//       //This is a private key
+//       cert: fs.readFileSync("/etc/letsencrypt/archive/tj.cit270.com/cert1.pem"),
+//       ca: fs.readFileSync("/etc/letsencrypt/archive/tj.cit270.com/chain1.pem"), //This is a self-signed ceriticated.
+//     },
+//     app
+//   )
+app.listen(port, () => {
+  redisClient.connect();
+  console.log("Listening on port:" + port);
+});
 
 app.get("/", (req, res) => {
   res.send("Welcome to my Node Server");
