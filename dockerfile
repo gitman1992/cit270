@@ -1,8 +1,10 @@
 FROM node:alpine
 
-COPY package.json ./
+WORKDIR /usr/app
 
-COPY server.js ./
+COPY package.json /usr/app
+
+COPY server.js /usr/app
 
 RUN npm install
 
