@@ -2,8 +2,8 @@ apiVersion: apps/v1
 # this the type of object we are making
 kind: Deployment
 metadata:
-  # This is the tj of my deployment
-  tj: cit270tjservice
+  # This is the name of my deployment
+  name: cit270tjservice
 # The specification for our deployment
 spec:
   # How many pods?
@@ -15,14 +15,14 @@ spec:
   # Template to create containers
   template:
     metadata:
-      tj: cit270tjservice
+      name: cit270tjservice
       labels:
         app: cit270tjservice
     # specification for pod
     spec:
       containers:
-        # tj of container
-        - tj: cit270tjservice
+        # name of container
+        - name: cit270tjservice
           # Docker image registry
           image: us-docker.pkg.dev/captain-americas-big-hat/tj-token-api/image
           # First part of the command to start our API
@@ -46,10 +46,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  tj: stedi-tj-nodeport
+  name: stedi-tj-nodeport
 spec:
   selector:
-    app: cit270tjservice # this needs to match the tj of your deployment (line 6)
+    app: cit270tjservice # this needs to match the name of your deployment (line 6)
   type: NodePort
   ports:
     - port: 80
@@ -61,16 +61,16 @@ metadata:
   name: stedi-tj-certificate2
 spec:
   domains:
-    - tj.cit270.com # this needs to be your domain tj from DNS
+    - tj.cit270.com # this needs to be your domain name from DNS
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  tj: stedi-tj-ingress
+  name: stedi-tj-ingress
   annotations:
-    # Use this command to find the address tj: gcloud compute addresses list
-    kubernetes.io/ingress.global-static-ip-tj: cit270tj
-    # needs to match the tj of the ManagedCertificate (line 75)
+    # Use this command to find the address name: gcloud compute addresses list
+    kubernetes.io/ingress.global-static-ip-name: cit270tj
+    # needs to match the name of the ManagedCertificate (line 75)
     networking.gke.io/managed-certificates: stedi-tj-certificate2
 spec:
   rules:
@@ -80,7 +80,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                # needs to match the tj of the NodePort Service (line 63)
-                tj: stedi-tj-nodeport
+                # needs to match the name of the NodePort Service (line 63)
+                name: stedi-tj-nodeport
                 port:
                   number: 80
