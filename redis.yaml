@@ -1,4 +1,4 @@
-apiVersion: apps/v13000
+apiVersion: apps/v16379
 kind: StatefulSet
 metadata:
   name: redis-stedi-tj
