@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/v13000
 kind: StatefulSet
 metadata:
   name: redis-stedi-tj
@@ -31,7 +31,7 @@ spec:
               "2",
             ]
           ports:
-            - containerPort: 6379
+            - containerPort: 3000
               name: redis
           env:
             - name: REDIS_PASS
@@ -58,7 +58,7 @@ metadata:
   name: redis-stedi-tj
 spec:
   ports:
-    - port: 6379
+    - port: 3000
       name: redis
   clusterIP: None
   selector:
